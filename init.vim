@@ -9,9 +9,16 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'hashivim/vim-hashicorp-tools'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/vim-gitbranch'
 call plug#end()
 " Settings
 set encoding=utf-8
+set foldmethod=syntax 
+set foldcolumn=1
+let javaScript_fold=1
+set foldlevelstart=99
 set mouse=a
 set noshowmode
 set tabstop=2
@@ -21,6 +28,9 @@ set number
 set backspace=indent,eol,start
 set splitright
 set splitbelow
+set incsearch
+set hlsearch
+syntax enable
 nnoremap d "_d
 vnoremap d "_d
 " --- NerdTree ---
@@ -28,7 +38,6 @@ autocmd vimenter * NERDTree
 let g:NERDTreeMouseMode=3
 " --- FZF ---
 set rtp+=~/fzf
-map <C-p> :Files <CR>
 " --- YCM ---
 let g:ycm_min_num_of_chars_for_completion = 4
 let g:ycm_min_num_identifier_candidate_chars = 4
@@ -42,3 +51,16 @@ let g:terraform_fmt_on_save=1
 " Mappings
 map <C-b> :NERDTreeToggle<CR>
 map <C-m> :NERDTreeFind<CR>
+map <C-n> :PrettierAsync<CR>
+map <C-p> :Files <CR>
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
