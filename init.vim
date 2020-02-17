@@ -12,6 +12,7 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 " Settings
 set encoding=utf-8
@@ -33,6 +34,8 @@ set hlsearch
 syntax enable
 nnoremap d "_d
 vnoremap d "_d
+colorscheme nord
+autocmd BufWritePost * GitGutter
 " --- NerdTree ---
 autocmd vimenter * NERDTree
 let g:NERDTreeMouseMode=3
