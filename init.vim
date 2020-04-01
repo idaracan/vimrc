@@ -32,8 +32,8 @@ set splitbelow
 set incsearch
 set hlsearch
 syntax enable
-nnoremap d "_d
-vnoremap d "_d
+"nnoremap d "_d
+"vnoremap d "_d
 colorscheme nord
 autocmd BufWritePost * GitGutter
 " --- NerdTree ---
@@ -56,6 +56,7 @@ map <C-b> :NERDTreeToggle<CR>
 map <C-m> :NERDTreeFind<CR>
 map <C-n> :PrettierAsync<CR>
 map <C-p> :Files <CR>
+map <C-F> :Ag <CR>
 " Lightline
 let g:lightline = {
       \ 'colorscheme': 'wombat',
