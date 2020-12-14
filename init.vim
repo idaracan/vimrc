@@ -6,13 +6,14 @@ Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'itchyny/lightline.vim'
 Plug 'Valloric/YouCompleteMe'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
 Plug 'arcticicestudio/nord-vim'
+Plug 'w0rp/ale'
 call plug#end()
 " Settings
 set encoding=utf-8
@@ -32,6 +33,20 @@ set splitbelow
 set incsearch
 set hlsearch
 syntax enable
+" TextEdit might fail if hidden is not set.
+set hidden
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+" Give more space for displaying messages.
+set cmdheight=2
+" --- ALE ---
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\}
+let g:ale_fixers = {'javascript': ['standard']}
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
 "nnoremap d "_d
 "vnoremap d "_d
 colorscheme nord
@@ -47,13 +62,23 @@ let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_enable_diagnostic_highlighting = 0
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
+" --- COC ---
+" Use K to show documentation in preview window.
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+"function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
 " --- Terraform ---
 let g:terraform_align=1
 let g:terraform_fold_sections=0
 let g:terraform_fmt_on_save=1
 " Mappings
-map <C-b> :NERDTreeToggle<CR>
-map <C-m> :NERDTreeFind<CR>
+map <C-z> :NERDTreeToggle<CR>
+map <C-x> :NERDTreeFind<CR>
 map <C-n> :PrettierAsync<CR>
 map <C-p> :Files <CR>
 map <C-F> :Ag <CR>
